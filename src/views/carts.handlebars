@@ -1,61 +1,10 @@
-<div class="container">
-  <h1 class="cart-title">Carrito de Compras</h1>
+<h1 class="cart-title">Carrito de Compras</h1>
 
-  <div class="cart-container">
-    {{#if productos.length}}
-      {{#each productos}}
-        <div class="cart-item">
-          <div class="product-info">
-            <h2 class="product-title">{{this.product.title}}</h2>
-            <p class="product-price">${{this.product.price}}</p>
-            <p class="product-quantity">Cantidad: {{this.quantity}}</p>
-          </div>
-          <div class="quantity-controls">
-            <button
-              class="quantity-btn"
-              onclick="updateQuantity('{{this.product._id}}', {{this.quantity}}, -1)"
-            >
-              <i class="fas fa-minus"></i>
-            </button>
-            <button
-              class="quantity-btn"
-              onclick="updateQuantity('{{this.product._id}}', {{this.quantity}}, 1)"
-            >
-              <i class="fas fa-plus"></i>
-            </button>
-            <button
-              class="quantity-btn remove"
-              onclick="removeProduct('{{this.product._id}}')"
-            >
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      {{/each}}
-
-      <div class="cart-total">
-        <p>Total: ${{total}}</p>
-      </div>
-
-      <button class="checkout-btn" onclick="checkout()">
-        <i class="fas fa-shopping-cart"></i>
-        Comprar ahora
-      </button>
-    {{else}}
-      <div class="empty-cart">
-        <i class="fas fa-shopping-cart"></i>
-        <p>Tu carrito está vacío</p>
-      </div>
-    {{/if}}
-  </div>
+<div class="cart-container">
+  {{#each productos}}
+    <div class="cart-item">
+      <p class="product-title">Producto: {{this.product.title}}</p>
+      <p class="product-quantity">Cantidad: {{this.quantity}}</p>
+    </div>
+  {{/each}}
 </div>
-
-<!-- Agregar Font Awesome para los iconos -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-/>
-<!-- Agregar nuestro CSS personalizado -->
-<link rel="stylesheet" href="/css/carts.css" />
-<!-- Agregar nuestro JavaScript para el carrito -->
-<script src="/js/carts.js"></script>

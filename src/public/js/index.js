@@ -7,20 +7,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (response.status === 200) {
       const result = await response.json();
-      console.log("Respuesta del servidor:", result);
-
       if (result.status === "success") {
-        console.log("Datos del usuario:", result.payload);
-
-        // Usar result.payload en lugar de result.user
-        const cartId = result.payload?.cart;
-        console.log("ID del carrito:", cartId);
-
         authNav.innerHTML = `
           <div class="d-flex">
-          <a class="nav-link" href="/carts/${cartId || ""}"> 🛒</a>
-          <span class="nav-link">|</span>  
-          <a class="nav-link" href="/profile">Perfil</a>
+            <a class="nav-link" href="/profile">Perfil</a>
             <span class="nav-link">|</span>
             <a class="nav-link logout-link" href="#">Cerrar sesión</a>
           </div>

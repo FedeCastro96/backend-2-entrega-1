@@ -21,11 +21,7 @@
           <div class="product-stock">
             <p>Stock: {{stock}}</p>
           </div>
-          <button
-            class="add-to-cart-btn"
-            data-product-id="{{_id}}"
-            onclick="console.log('ID del producto:', this.getAttribute('data-product-id'))"
-          >
+          <button class="add-to-cart-btn" data-product-id="{{_id}}">
             <i class="fas fa-shopping-cart"></i>
             Agregar al carrito
           </button>
@@ -58,5 +54,3 @@
 />
 <!-- Agregar nuestro CSS personalizado -->
 <link rel="stylesheet" href="/css/products.css" />
-<!-- Agregar nuestro JavaScript para el carrito -->
-<script src="/js/products.js"></script>

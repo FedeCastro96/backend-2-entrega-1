@@ -39,7 +39,8 @@ router.get("/products", checkAuth, async (req, res) => {
     });
 
     const nuevoArray = productos.docs.map((producto) => {
-      return producto.toObject();
+      const { _id, ...rest } = producto.toObject();
+      return rest;
     });
 
     res.render("products", {
@@ -70,18 +71,11 @@ router.get("/carts/:cid", checkAuth, async (req, res) => {
 
     const productosEnCarrito = carrito.products.map((item) => ({
       product: item.product.toObject(),
+      //Lo convertimos a objeto para pasar las restricciones de Exp Handlebars.
       quantity: item.quantity,
     }));
 
-    // Calcular el total del carrito
-    const total = productosEnCarrito.reduce((sum, item) => {
-      return sum + item.product.price * item.quantity;
-    }, 0);
-
-    res.render("carts", {
-      productos: productosEnCarrito,
-      total: total.toFixed(2),
-    });
+    res.render("carts", { productos: productosEnCarrito });
   } catch (error) {
     console.error("Error al obtener el carrito", error);
     res.status(500).json({ error: "Error interno del servidor" });
